@@ -38,6 +38,7 @@ public class StoreData {
 		storeInventory.putAll(store.getStoreInventory());
 		
 		//Not sure if this works, customerId doesn't get pulled in certain CRUD operations
+		//Edit: Issue was related to not using correct @PathVariable in controller
 		for(Customer customer : store.getCustomers()) {
 		customers.add(new StoreCustomer(customer));
 		}

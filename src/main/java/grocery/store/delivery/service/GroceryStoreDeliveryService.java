@@ -127,6 +127,8 @@ public class GroceryStoreDeliveryService {
 		Store store = findByStoreId(storeId);
 		store.setStoreInventory(storeData.getStoreInventory());
 		return new StoreData(storeDao.save(store));
+		
+//--------Kept this in just in in case I need to look over my mistakes-----
 		// Store store = storeDao.findById(storeId).orElseThrow(() -> new
 		// NoSuchElementException(
 //				"Valid Store ID of" + storeId + " Not Found"));
@@ -134,6 +136,7 @@ public class GroceryStoreDeliveryService {
 //			copyStoreFields(store, storeData);
 //		} // might need to add an exception, need to test
 //		return new StoreData(storeDao.save(store));
+//-------------------------------------------------------------------------
 	}
 
 	@Transactional(readOnly = true)
@@ -143,8 +146,8 @@ public class GroceryStoreDeliveryService {
 		for (Store store : stores) {
 			StoreData storeData = new StoreData(store);
 //---------might just use only customer clear to keep the result clutter-free--			
-//			storeData.getCustomers().clear();
-//			storeData.getStoreInventory().clear();
+			storeData.getCustomers().clear();
+			storeData.getStoreInventory().clear();
 //-----------------------------------------------------------------------------			
 			data.add(storeData);
 		}
@@ -196,7 +199,7 @@ public class GroceryStoreDeliveryService {
 				itemUnavailable.append("(item unavailable)");
 				orderList.set(orderList.indexOf(item), itemUnavailable.toString());
 			}
-			// this should be show (item unavailable) in the groceryList, could possibly be
+			// this should show (item unavailable) in the groceryList, could possibly be
 			// in the wrong spot, need to test it.
 			customerDeliveryOrder.setOrderGroceries(orderList);
 		}
@@ -238,6 +241,7 @@ public class GroceryStoreDeliveryService {
 	private DeliveryOrder findByDeliveryOrderId(Long storeId, Long customerId,
 			Long deliveryOrderId) {
 		// Might need to fix this up, gonna test 1st
+		// Edit: Should be working as intended
 
 		DeliveryOrder deliveryOrder = deliveryOrderDao.findById(deliveryOrderId)
 				.orElseThrow(() -> new NoSuchElementException(
@@ -258,6 +262,7 @@ public class GroceryStoreDeliveryService {
 	public List<StoreCustomer> retreiveAllCustomers(Long storeId) {
 		Store store = findByStoreId(storeId);
 		// not sure this works
+		// Edit: This should be working
 		List<Customer> customers = new ArrayList<>(store.getCustomers());
 		List<StoreCustomer> data = new LinkedList<>();
 
@@ -273,7 +278,8 @@ public class GroceryStoreDeliveryService {
 		StoreData storeData = new StoreData(findByStoreId(storeId));
 		return storeData;
 	}
-	//only pulls from store 1 for some reason, gonna try to fix
+	// only pulls from store 1 for some reason, gonna try to fix
+	// Edit: fixed it, was an issue with not using the correct @PathVariable in the controller
 	@Transactional(readOnly = true)
 	public StoreCustomer retreiveCustomerById(Long storeId, Long customerId) {
 		StoreCustomer storeCustomer = new StoreCustomer(findByCustomerId(storeId, customerId));
@@ -303,11 +309,13 @@ public class GroceryStoreDeliveryService {
 	@Transactional(readOnly = false)
 	public void deleteDeliveryOrderById(Long storeId, Long customerId, Long deliveryOrderId) {
 		deliveryOrderDao.delete(findByDeliveryOrderId(storeId, customerId, deliveryOrderId));
+//------------------------------Don't need this------------------------------------------
 //		Customer customer = findByCustomerId(storeId, customerId);
 //		DeliveryOrder deliveryOrder = findByDeliveryOrderId(storeId, customerId, deliveryOrderId);
 //		customer.getDeliveryOrders().remove(deliveryOrder);
 //		customerDao.save(customer);
 		//deliveryOrderDao.delete(deliveryOrder);
+//---------------------------------------------------------------------------------------
 	}
 	
 	@Transactional(readOnly = false)
@@ -336,8 +344,10 @@ public class GroceryStoreDeliveryService {
 //		if(storeData != null) {
 //			storeData.setStoreInventory(new HashMap<>());
 //		}
-		//Not sure if this works
+	//Not sure if this works
 	//	storeData.getStoreInventory().clear();
+		
+		// This works
 		Store store = findByStoreId(storeId);
 		store.setStoreInventory(new HashMap<>());
 		

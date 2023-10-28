@@ -37,17 +37,19 @@ public class GroceryStoreDeliveryController {
 	// DELETE requests
 	// Edit: I believe I've fixed both issues, gonna delete the database and start
 	// fresh to make sure. Should probably create a mock test if I have time for it.
+	
 	// ---List of To Do's---
 	// -Create-
 	// Store(Done), Customer(Done), Inventory(Don't need*), DeliveryOrder(Done)
 	// --Read
-	// Store(Done), Customer(Issues), Inventory(Done), DeliveryOrder(Done)
+	// Store(Done), Customer(Done), Inventory(Done), DeliveryOrder(Done)
 	// --Update
 	// Store(Done), Customer(Done), Inventory(Done)
 	// --Delete
 	// Store(Done), Customer(Done), Inventory(Done), DeliveryOrder(Done)
 	// *Didn't need since an empty Inventory is created when a store is created.
 	//----------------------
+	
 	// As of 10/25, this project should be in a full working state that meets all
 	// the necessary requirements for submission and review.
 
@@ -158,6 +160,7 @@ public class GroceryStoreDeliveryController {
 	}
 	// making all the DELETE requests the same, should probably refactor them at
 	// some point.
+	// Edit: They've been changed.
 
 	@DeleteMapping("/store/{storeId}/customer/{customerId}/delivery_order/{deliveryOrderId}")
 	public Map<String, String> deleteDeliveryOrderById(@PathVariable Long storeId,

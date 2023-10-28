@@ -17,22 +17,25 @@ public class StoreCustomer {
 	private String customerEmail;
 	private String customerPassword;
 	private Set<CustomerDeliveryOrder> deliveryOrders = new HashSet<>();
-	//adding this to see if anything changes
-	
-	//private Set<StoreData> stores = new HashSet<>();
-	
+
+	// ----adding this to see if anything changes----
+	// Edit: Didn't need this
+	// private Set<StoreData> stores = new HashSet<>();
+
+	// ----------------------------------------------
 	public StoreCustomer(Customer customer) {
 		customerId = customer.getCustomerId();
 		customerFirstName = customer.getCustomerFirstName();
 		customerLastName = customer.getCustomerLastName();
 		customerEmail = customer.getCustomerEmail();
 		customerPassword = customer.getCustomerPassword();
-	
-		for(DeliveryOrder order : customer.getDeliveryOrders()) {
+
+		for (DeliveryOrder order : customer.getDeliveryOrders()) {
 			deliveryOrders.add(new CustomerDeliveryOrder(order));
 		}
 		// not sure if this works
-//		for(Store store : customer.getStores()) {
+//		   Edit: don't think I need this
+		// for(Store store : customer.getStores()) {
 //			stores.add(new StoreData(store));
 //		}
 	}

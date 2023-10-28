@@ -17,27 +17,30 @@ import lombok.ToString;
 @Entity
 @Data
 public class Customer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long customerId;
-	
+
 	private String customerFirstName;
 	private String customerLastName;
 	private String customerEmail;
 	private String customerPassword;
-	
-	//--need to join customers to stores, and orders to customers--
+
+	// --need to join customers to stores, and orders to customers--
 
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-	@ManyToMany(mappedBy = "customers" , cascade = CascadeType.PERSIST)
+	@ManyToMany(mappedBy = "customers", cascade = CascadeType.PERSIST)
 	private Set<Store> stores = new HashSet<>();
-	
+
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude
-//	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	// Don't need this
+	// @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, orphanRemoval
+	// = true)
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<DeliveryOrder> deliveryOrders = new HashSet<>(); //Not sure if I need this, keeping it for now
-	//-------------------------------------------------------------
+	private Set<DeliveryOrder> deliveryOrders = new HashSet<>(); // Not sure if I need this, keeping
+																	// it for now
+
 }
