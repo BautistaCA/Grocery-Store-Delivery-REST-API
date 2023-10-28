@@ -1,0 +1,8 @@
+{
+  "storeName": "Final Test Store",
+  "storeAddress": "9999 North Test Lane",
+  "storeCity": "Primm",
+  "storeState": "Nevada",
+  "storeZip" : "77700",
+  "storePhone": "702-999-1111"
+}

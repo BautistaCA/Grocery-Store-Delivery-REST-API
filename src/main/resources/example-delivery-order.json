@@ -1,0 +1,7 @@
+{
+  "deliveryOrderShippingAddress": "1311 Test Avenue",
+  "deliveryOrderShippingCity": "Test City",
+  "deliveryOrderShippingState": "NV",
+  "deliveryOrderShippingZip": "89113",
+  "orderGroceries": ["Eggs", "Gum", "Bread", "Water"]
+}
