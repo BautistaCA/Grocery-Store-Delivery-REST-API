@@ -70,8 +70,8 @@ public class GroceryStoreDeliveryService {
 	@Transactional(readOnly = false)
 	public StoreCustomer saveCustomer(Long storeId, StoreCustomer storeCustomer) {
 		Store store = findByStoreId(storeId);
-		Long customerId = storeCustomer.getCustomerId();
-		Customer customer = findOrCreateCustomer(storeId, customerId);
+	//	Long customerId = storeCustomer.getCustomerId(); // Don't think I need this
+		Customer customer = findOrCreateCustomer(storeId, storeCustomer.getCustomerId());
 
 		copyCustomerFields(customer, storeCustomer);
 

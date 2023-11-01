@@ -82,6 +82,7 @@ public class GroceryStoreDeliveryController {
 	// stem from this
 	// Edit: I forgot to annotate customerId as another @PathVariable, gotta
 	// remember to do this.
+	// Might need to change how saveCustomer works, might not need StoreId in certain methods.
 	@PutMapping("/store/{storeId}/customer/{customerId}")
 	public StoreCustomer updateCustomer(@PathVariable Long storeId, @PathVariable Long customerId,
 			@RequestBody StoreCustomer storeCustomer) {
